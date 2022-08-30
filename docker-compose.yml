@@ -1,0 +1,25 @@
+version: '3'
+services:
+  logic:
+    image: hiteshmanwani092/hitesh-sa-logic
+    container_name: logic
+    build:
+      context: ./sa-logic
+    ports:
+      - 5000:5000
+  webapp:
+    image: hiteshmanwani092/hitesh-sa-webapp
+    container_name: webapp
+    build:
+      context: ./sa-webapp
+    ports:
+      - 8080:8080
+    environment:
+            - SA_LOGIC_API_URL=http://logic:5000
+  frontapp:
+    image: hiteshmanwani092/hitesh-sa-frontend
+    container_name: frontend
+    build: 
+      context: ./sa-frontend
+    ports:
+      - 80:80      
